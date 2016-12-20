@@ -1,0 +1,22 @@
+.login
+  .login__container
+    h1 Login
+
+    .login__container__box
+      .login__container__box__content
+        - if @session.errors.any?
+          ul.login__container__box__content__error_messages
+            - @session.errors.full_messages.each do |message|
+              li = message
+
+        = form_for @session, url: sessions_path do |f|
+          .login__container__box__content__field
+              = f.label :email
+              = f.text_field :email
+        
+          .login__container__box__content__field
+              = f.label :password
+              = f.text_field :password
+        
+          .login__container__box__content__submit
+            = f.submit 'Login'
